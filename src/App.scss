@@ -1,0 +1,22 @@
+.Covid19 {
+  text-align: center;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+
+  &__header {
+    margin: 2em;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+
+  &__globalStatistics {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    margin-left: 2em;
+    margin-right: 2em;
+  }
+}
