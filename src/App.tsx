@@ -16,6 +16,11 @@ import {
   TOTAL_CONFIRMED,
   TOTAL_DEATHS,
   TOTAL_RECOVERED,
+  FOOTER_GENERAL_HEADER,
+  FOOTER_RAPID_HEADER,
+  FOOTER_RAPID_PARAGRAPH,
+  FOOTER_CASES_HEADER,
+  FOOTER_CASES_PARAGRAPH,
 } from './constants/general';
 
 interface ICovid19Statistics {
@@ -84,18 +89,11 @@ const App = () => {
         </div>
       )}
       <footer className="Covid19__Footer">
-        <h3 className="Covid19__Footer--h3">About this data</h3>
-        <h4 className="Covid19__Footer--h4">It changes rapidly</h4>
-        <p className="Covid19__Footer--p">
-          This data changes rapidly, so what’s shown may be out of date.
-          Information about reported cases is also available on the World Health
-          Organization site.
-        </p>
-        <h4 className="Covid19__Footer--h4">It doesn’t include all cases</h4>
-        <p className="Covid19__Footer--p">
-          Confirmed cases aren’t all cases. They only include people who tested
-          positive. Testing rules and availability vary by country.
-        </p>
+        <h3 className="Covid19__Footer--h3">{FOOTER_GENERAL_HEADER}</h3>
+        <h4 className="Covid19__Footer--h4">{FOOTER_RAPID_HEADER}</h4>
+        <p className="Covid19__Footer--p">{FOOTER_RAPID_PARAGRAPH}</p>
+        <h4 className="Covid19__Footer--h4">{FOOTER_CASES_HEADER}</h4>
+        <p className="Covid19__Footer--p">{FOOTER_CASES_PARAGRAPH}</p>
       </footer>
     </div>
   );
