@@ -1,7 +1,42 @@
 .StatisticCard {
-  width: 15em;
-  height: 10em;
   margin: 1em;
+  border-radius: 3em !important;
+  word-break: break-all;
+
+  &__Avatar {
+    margin-right: 0px !important;
+
+    &--confirmed {
+      color: #027be3;
+    }
+
+    &--deaths {
+      color: #f44336;
+    }
+
+    &--recovered {
+      color: #009688;
+    }
+  }
+
+  &__Content {
+    &--confirmed {
+      color: #027be3;
+    }
+
+    &--deaths {
+      color: #f44336;
+    }
+
+    &--recovered {
+      color: #009688;
+    }
+  }
+}
+
+// Overriding Material UI
+.MuiCardHeader-root {
+  flex-direction: column;
 }
 
 .MuiSvgIcon-root {

@@ -1,6 +1,9 @@
 // React
 import React from 'react';
 
+// External
+import classNames from 'classnames';
+
 // CSS
 import './StatisticCard.scss';
 
@@ -11,31 +14,70 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Typography from '@material-ui/core/Typography';
 
 // Icons
-import { AccessAlarm } from '@material-ui/icons';
+import { BugReport, ReportOutlined, Security } from '@material-ui/icons';
+
+// Constants
+import {
+  TOTAL_CONFIRMED,
+  TOTAL_DEATHS,
+  TOTAL_RECOVERED,
+} from '../constants/general';
 
 interface StatisticCardProps {
+  title: string;
   dateString: string;
+  statistic: number;
 }
-const StatisticCard: React.FC<StatisticCardProps> = (props) => {
-  const { dateString } = props;
 
+const StatisticCard: React.FC<StatisticCardProps> = (props) => {
+  const { title, dateString, statistic } = props;
+
+  // Parsing incoming DateString
   const options = {
     year: 'numeric',
     month: 'numeric',
     day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
   };
   const date = new Date(Date.parse(dateString));
 
+  // Dynamic rendering of the Icon & Classes happenss here.
+  const avatarIcon =
+    title === TOTAL_CONFIRMED ? (
+      <BugReport />
+    ) : title === TOTAL_DEATHS ? (
+      <ReportOutlined />
+    ) : title === TOTAL_RECOVERED ? (
+      <Security />
+    ) : (
+      ''
+    );
+
+  const avatarClassNames = classNames('StatisticCard__Avatar', {
+    'StatisticCard__Avatar--confirmed': title === TOTAL_CONFIRMED,
+    'StatisticCard__Avatar--deaths': title === TOTAL_DEATHS,
+    'StatisticCard__Avatar--recovered': title === TOTAL_RECOVERED,
+  });
+
+  const typographyClassNames = classNames('StatisticCard__Content', {
+    'StatisticCard__Content--confirmed': title === TOTAL_CONFIRMED,
+    'StatisticCard__Content--deaths': title === TOTAL_DEATHS,
+    'StatisticCard__Content--recovered': title === TOTAL_RECOVERED,
+  });
+
   return (
-    <Card className="StatisticCard">
+    <Card className="StatisticCard" variant="outlined">
       <CardHeader
-        avatar={<AccessAlarm />}
-        title="Lorem Ipsum"
-        subheader={date.toLocaleDateString('nl-NL', options)}
-      ></CardHeader>
-      <CardContent>
-        <Typography variant="h3" color="error" component="p">
-          100000
+        classes={{ avatar: avatarClassNames }}
+        avatar={avatarIcon}
+        title={title}
+        subheader={`Updated at: ${date.toLocaleDateString('nl-NL', options)}`}
+      />
+      <CardContent classes={{ root: typographyClassNames }}>
+        <Typography variant="h3" component="p">
+          {statistic}
         </Typography>
       </CardContent>
     </Card>
