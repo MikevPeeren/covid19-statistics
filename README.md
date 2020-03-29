@@ -5,4 +5,4 @@
 Access data on COVID19 through an easy Web Interface.  
 The data is sourced from Johns Hopkins CSSE.
 
-To get this Data an Api is getting used from: https://covid19api.com/
+To get this Data an Api is being used which is located at: https://covid19api.com/
