@@ -1,11 +1,9 @@
 // React
 import React, { useState, useEffect } from 'react';
 
-// Externals
-import CircularProgress from '@material-ui/core/CircularProgress';
-
 // Components
 import StatisticCard from './StatisticCard';
+import LoadingWheel from './LoadingWheel';
 
 // Api
 import { getCovid19Statistics } from '../api/Covid19Api';
@@ -17,6 +15,7 @@ import {
   TOTAL_RECOVERED,
 } from '../constants/general';
 
+// Interface
 interface ICovid19Statistics {
   Countries: [
     {
@@ -42,16 +41,20 @@ const GlobalStatistics = () => {
   let totalRecovered = 0;
 
   useEffect(() => {
-    async function getCovid19Statisticss() {
+    /**
+     * Get the Global Covid 19 Statistics
+     */
+    async function getCovid19Stats() {
       setCovid19Statistics(await getCovid19Statistics());
       setLoading(false);
     }
 
     if (loading && !covid19Statistics) {
-      getCovid19Statisticss();
+      getCovid19Stats();
     }
-  }, [covid19Statistics, loading]);
+  });
 
+  // Adjusting totalCount with a loop.
   if (covid19Statistics) {
     covid19Statistics.Countries.forEach((country) => {
       totalConfirmed = totalConfirmed + country.TotalConfirmed;
@@ -62,16 +65,7 @@ const GlobalStatistics = () => {
 
   return (
     <>
-      {loading && (
-        <div>
-          <CircularProgress
-            size={100}
-            color={'secondary'}
-            thickness={3.5}
-            variant={'indeterminate'}
-          />
-        </div>
-      )}
+      {loading && <LoadingWheel />}
       {!loading && covid19Statistics && (
         <div className="Covid19__GlobalStatistics">
           <StatisticCard

@@ -6,6 +6,7 @@ import './App.scss';
 
 // Components
 import GlobalStatistics from './components/GlobalStatistics';
+import CountryLineChart from './components/CountryLineChart';
 
 // Constants
 import {
@@ -23,6 +24,9 @@ const App = () => {
       <header className="Covid19__Header">{COVID_19_HEADER}</header>
       <div className="Covid19__GlobalStatistics">
         <GlobalStatistics />
+      </div>
+      <div className="Covid19__CountryLineChart">
+        <CountryLineChart />
       </div>
       <footer className="Covid19__Footer">
         <h3 className="Covid19__Footer--h3">{FOOTER_GENERAL_HEADER}</h3>

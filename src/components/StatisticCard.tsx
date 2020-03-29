@@ -32,20 +32,34 @@ interface StatisticCardProps {
 const StatisticCard: React.FC<StatisticCardProps> = (props) => {
   const { title, dateString, statistic } = props;
 
-  // Parsing incoming DateString
-  const options = {
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
-  };
-  const date = new Date(Date.parse(dateString));
+  /**
+   * Parses the incoming dateString to a Date object.
+   *
+   * @param {string} dateString
+   *
+   * @returns {string}
+   */
+  const parseDateString = (): string => {
+    const options = {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+    };
 
-  // Dynamic rendering of the Icon & Classes happenss here.
-  const avatarIcon =
-    title === TOTAL_CONFIRMED ? (
+    const date = new Date(Date.parse(dateString));
+    return date.toLocaleDateString('nl-NL', options);
+  };
+
+  /**
+   * Checks which Avatar Icon to get and returns it.
+   *
+   * @returns {BugReport || ReportOutlined || Security}
+   */
+  const getAvatarIcon = () => {
+    return title === TOTAL_CONFIRMED ? (
       <BugReport />
     ) : title === TOTAL_DEATHS ? (
       <ReportOutlined />
@@ -54,6 +68,13 @@ const StatisticCard: React.FC<StatisticCardProps> = (props) => {
     ) : (
       ''
     );
+  };
+
+  // Parsing incoming DateString
+  const date = parseDateString();
+
+  // Dynamic rendering of the Icon & Classes happens here.
+  const avatarIcon = getAvatarIcon();
 
   const avatarClassNames = classNames('StatisticCard__Avatar', {
     'StatisticCard__Avatar--confirmed': title === TOTAL_CONFIRMED,
@@ -73,7 +94,7 @@ const StatisticCard: React.FC<StatisticCardProps> = (props) => {
         classes={{ avatar: avatarClassNames }}
         avatar={avatarIcon}
         title={title}
-        subheader={`Updated at: ${date.toLocaleDateString('nl-NL', options)}`}
+        subheader={`Updated at: ${date}`}
       />
       <CardContent classes={{ root: typographyClassNames }}>
         <Typography variant="h3" component="p">
