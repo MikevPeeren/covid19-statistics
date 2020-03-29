@@ -1,0 +1,12 @@
+.CountryLineChart {
+  display: flex;
+  flex-direction: column;
+
+  &__Country {
+    &--label {
+      margin: 1em;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+  }
+}

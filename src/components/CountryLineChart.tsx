@@ -10,11 +10,13 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  ResponsiveContainer,
 } from 'recharts';
 
 // Components
 import LoadingWheel from './LoadingWheel';
+
+// CSS
+import './CountryLineChart.scss';
 
 // Api
 import { getCovid19StatisticsByCountry } from '../api/Covid19Api';
@@ -84,19 +86,24 @@ const CountryLineChart: React.FC = () => {
     <>
       {loading && <LoadingWheel />}
       {covid19CountryStatistics && (
-        <LineChart width={600} height={300} data={covid19CountryStatistics}>
-          <CartesianGrid strokeDasharray="1 1" />
-          <XAxis dataKey="Date" />
-          <YAxis />
-          <Tooltip />
-          <Legend verticalAlign="top" height={36} />
-          <Line
-            type="monotone"
-            dataKey="Cases"
-            stroke="#8884d8"
-            activeDot={{ r: 8 }}
-          />
-        </LineChart>
+        <div className="CountryLineChart">
+          <LineChart width={600} height={300} data={covid19CountryStatistics}>
+            <CartesianGrid strokeDasharray="1 1" />
+            <XAxis dataKey="Date" />
+            <YAxis />
+            <Tooltip />
+            <Legend verticalAlign="top" height={36} />
+            <Line
+              type="monotone"
+              dataKey="Cases"
+              stroke="#8884d8"
+              activeDot={{ r: 8 }}
+            />
+          </LineChart>
+          <span className="CountryLineChart__Country--label">
+            The Netherlands
+          </span>
+        </div>
       )}
     </>
   );
