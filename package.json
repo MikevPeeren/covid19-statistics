@@ -1,7 +1,7 @@
 {
   "name": "covid19-statistics",
   "version": "1.0.0",
-  "homepage": "http://mikevpeeren.github.io/Covid19_Statistics",
+  "homepage": "http://mikevpeeren.github.io/Covid19-Statistics",
   "dependencies": {
     "@material-ui/core": "^4.9.7",
     "@material-ui/icons": "^4.9.1",
