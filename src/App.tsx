@@ -6,7 +6,7 @@ import './App.scss';
 
 // Components
 import GlobalStatistics from './components/GlobalStatistics';
-import CountryLineChart from './components/CountryLineChart';
+import CountryAreaChart from './components/CountryAreaChart';
 import SearchForm from './components/SearchForm';
 
 // Constants
@@ -35,7 +35,7 @@ const App = () => {
       <div className="Covid19__SearchForm">
         <SearchForm setCountryState={setCountryState} />
       </div>
-      <div className="Covid19__CountryLineChart">{country && <CountryLineChart country={country} />}</div>
+      <div className="Covid19__CountryAreaChart">{country && <CountryAreaChart country={country} />}</div>
       <footer className="Covid19__Footer">
         <h3 className="Covid19__Footer--h3">{FOOTER_GENERAL_HEADER}</h3>
         <h4 className="Covid19__Footer--h4">{FOOTER_RAPID_HEADER}</h4>

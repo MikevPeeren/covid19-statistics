@@ -8,13 +8,13 @@ import { Area, AreaChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import LoadingWheel from './LoadingWheel';
 
 // CSS
-import './CountryLineChart.scss';
+import './CountryAreaChart.scss';
 
 // Api
 import { getCovid19StatisticsByCountryAndStatus } from '../api/Covid19Api';
 
 // Interface
-interface iCountryLineChartProps {
+interface iCountryAreaChartProps {
   country: string;
 }
 interface ICovid19CountryStatistics {
@@ -27,7 +27,7 @@ interface ICovid19CountryStatistics {
   Status: string;
 }
 
-const CountryLineChart: React.FC<iCountryLineChartProps> = (props) => {
+const CountryAreaChart: React.FC<iCountryAreaChartProps> = (props) => {
   const { country } = props;
 
   const [loading, setLoading] = useState(true);
@@ -101,7 +101,7 @@ const CountryLineChart: React.FC<iCountryLineChartProps> = (props) => {
     <>
       {loading && <LoadingWheel />}
       {covid19CountryStatistics && (
-        <div style={{ width: '50%', height: 300 }} className="CountryLineChart">
+        <div style={{ width: '50%', height: 300 }} className="CountryAreaChart">
           <ResponsiveContainer>
             <AreaChart width={600} height={400} data={covid19CountryStatistics}>
               <CartesianGrid strokeDasharray="1 1" />
@@ -120,4 +120,4 @@ const CountryLineChart: React.FC<iCountryLineChartProps> = (props) => {
   );
 };
 
-export default CountryLineChart;
+export default CountryAreaChart;
