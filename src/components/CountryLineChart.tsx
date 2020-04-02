@@ -2,15 +2,7 @@
 import React, { useState, useEffect } from 'react';
 
 // External
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-} from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 // Components
 import LoadingWheel from './LoadingWheel';
@@ -22,6 +14,9 @@ import './CountryLineChart.scss';
 import { getCovid19StatisticsByCountry } from '../api/Covid19Api';
 
 // Interface
+interface iCountryLineChartProps {
+  country: string;
+}
 interface ICovid19CountryStatistics {
   Country: string;
   Province: string;
@@ -32,35 +27,24 @@ interface ICovid19CountryStatistics {
   Status: string;
 }
 
-const CountryLineChart: React.FC = () => {
-  const [covid19CountryStatistics, setCovid19CountryStatistics] = useState<
-    [ICovid19CountryStatistics] | null
-  >(null);
-  const [loading, setLoading] = useState(true);
+const CountryLineChart: React.FC<iCountryLineChartProps> = (props) => {
+  const { country } = props;
 
+  const [loading, setLoading] = useState(true);
+  const [covid19CountryStatistics, setCovid19CountryStatistics] = useState<[ICovid19CountryStatistics] | null>(null);
+
+  // TODO: Move this perhaps to a top level component that handles the Data?
   useEffect(() => {
     /**
      * Gets the Statistics for a specific Country.
      */
     async function getCovid19CountryStatistics() {
-      setCovid19CountryStatistics(
-        // TODO: Make an input field for country.
-        await getCovid19StatisticsByCountry('netherlands'),
-      );
-    }
+      const covid19StatisticsByCountry = await getCovid19StatisticsByCountry(country);
 
-    if (loading && !covid19CountryStatistics) {
-      getCovid19CountryStatistics();
-    }
-  });
-
-  useEffect(() => {
-    /**
-     * Formatting the Date so that our Charts can handle it correctly.
-     */
-    function formatCovid19CountryStatistics() {
-      if (covid19CountryStatistics) {
-        covid19CountryStatistics.forEach((country) => {
+      // TODO: Error handling for SearchControl.
+      if (covid19StatisticsByCountry && Object.keys(covid19StatisticsByCountry).length > 0) {
+        //@ts-ignore
+        await covid19StatisticsByCountry.forEach((country) => {
           // Parsing incoming DateString
           const options = {
             year: 'numeric',
@@ -72,14 +56,14 @@ const CountryLineChart: React.FC = () => {
           // We change our DataSet here as we know we will only use it on this page.
           country.Date = dateToString;
         });
-        setLoading(false);
+
+        setCovid19CountryStatistics(covid19StatisticsByCountry);
       }
     }
 
-    if (covid19CountryStatistics) {
-      formatCovid19CountryStatistics();
-    }
-  }, [covid19CountryStatistics, loading]);
+    getCovid19CountryStatistics();
+    setLoading(false);
+  }, [country]);
 
   // TODO: Add Responsive Layout
   return (
@@ -93,16 +77,8 @@ const CountryLineChart: React.FC = () => {
             <YAxis />
             <Tooltip />
             <Legend verticalAlign="top" height={36} />
-            <Line
-              type="monotone"
-              dataKey="Cases"
-              stroke="#8884d8"
-              activeDot={{ r: 8 }}
-            />
+            <Line type="monotone" dataKey="Cases" stroke="#8884d8" activeDot={{ r: 8 }} />
           </LineChart>
-          <span className="CountryLineChart__Country--label">
-            The Netherlands
-          </span>
         </div>
       )}
     </>

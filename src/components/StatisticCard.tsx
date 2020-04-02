@@ -17,19 +17,15 @@ import Typography from '@material-ui/core/Typography';
 import { BugReport, ReportOutlined, Security } from '@material-ui/icons';
 
 // Constants
-import {
-  TOTAL_CONFIRMED,
-  TOTAL_DEATHS,
-  TOTAL_RECOVERED,
-} from '../constants/general';
+import { TOTAL_CONFIRMED, TOTAL_DEATHS, TOTAL_RECOVERED } from '../constants/general';
 
-interface StatisticCardProps {
+interface IStatisticCardProps {
   title: string;
   dateString: string;
   statistic: number;
 }
 
-const StatisticCard: React.FC<StatisticCardProps> = (props) => {
+const StatisticCard: React.FC<IStatisticCardProps> = (props) => {
   const { title, dateString, statistic } = props;
 
   /**

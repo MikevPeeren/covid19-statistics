@@ -18,3 +18,6 @@ export const FOOTER_CASES_PARAGRAPH = `
 Confirmed cases aren’t all cases. They only include people who tested
 positive. Testing rules and availability vary by country.
 `;
+
+export const SEARCH_FORM_INPUT_TEXT = 'Country';
+export const SEARCH_FORM_HELPER_TEXT = 'Fill in the Country for which you require Statistics.';
