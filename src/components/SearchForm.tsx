@@ -1,5 +1,5 @@
 // React
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 
 // Material UI
 import FormControl from '@material-ui/core/FormControl';
