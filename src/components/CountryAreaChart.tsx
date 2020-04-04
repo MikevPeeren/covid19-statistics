@@ -78,10 +78,10 @@ const CountryAreaChart: React.FC<iCountryAreaChartProps> = (props) => {
       );
 
       setCovid19CountryStatistics(covid19ResultWithRecovered);
+      setLoading(false);
     }
 
     getCovid19CountryStatistics();
-    setLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [country]);
 
@@ -147,7 +147,7 @@ const CountryAreaChart: React.FC<iCountryAreaChartProps> = (props) => {
     <>
       {loading && <LoadingWheel />}
       {covid19CountryStatistics && (
-        <div style={{ width: '50%', height: 300 }} className="CountryAreaChart">
+        <div style={{ width: '80%', height: 300 }} className="CountryAreaChart">
           <ResponsiveContainer>
             <AreaChart width={600} height={400} data={covid19CountryStatistics}>
               <CartesianGrid strokeDasharray="1 1" />
