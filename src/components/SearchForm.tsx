@@ -46,7 +46,12 @@ const SearchForm: React.FC<ISearchFormProps> = (props) => {
     getCovid19CountriesByApi();
   }, []);
 
-  countries && countries.splice(0, 2);
+  countries &&
+    countries.sort(function (countryA, countryB) {
+      if (countryA.Country.toLowerCase() < countryB.Country.toLowerCase()) return -1;
+      if (countryA.Country.toLowerCase() > countryB.Country.toLowerCase()) return 1;
+      return 0;
+    });
 
   return (
     <FormControl>
