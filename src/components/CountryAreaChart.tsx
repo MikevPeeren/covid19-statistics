@@ -14,7 +14,7 @@ import LoadingWheel from './LoadingWheel';
 import { getCovid19StatisticsByCountryAndStatus } from '../api/Covid19Api';
 
 // Constants
-import { DATE_PARSING_OPTIONS_CHARTS } from '../constants/general';
+import { DATE_PARSING_OPTIONS_CHARTS, NO_DATA_FOUND } from '../constants/general';
 
 // Interface
 interface iCountryAreaChartProps {
@@ -42,6 +42,8 @@ const CountryAreaChart: React.FC<iCountryAreaChartProps> = (props) => {
   );
 
   useEffect(() => {
+    setLoading(true);
+    setCovid19CountryStatistics(undefined);
     /**
      * Gets the Statistics for a specific Country.
      */
@@ -182,6 +184,9 @@ const CountryAreaChart: React.FC<iCountryAreaChartProps> = (props) => {
             </AreaChart>
           </ResponsiveContainer>
         </div>
+      )}
+      {!covid19CountryStatistics && !loading && (
+        <div className="CountryAreaChart__Country--undefined">{NO_DATA_FOUND}</div>
       )}
     </>
   );
