@@ -21,3 +21,9 @@ positive. Testing rules and availability vary by country.
 
 export const SEARCH_FORM_INPUT_TEXT = 'Country';
 export const SEARCH_FORM_HELPER_TEXT = 'Fill in the Country for which you require Statistics.';
+
+export const DATE_PARSING_OPTIONS = {
+  year: 'numeric',
+  month: 'numeric',
+  day: 'numeric',
+};

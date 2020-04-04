@@ -1,17 +1,20 @@
 // React
 import React, { useState, useEffect } from 'react';
 
+// CSS
+import './CountryAreaChart.scss';
+
 // External
 import { Area, AreaChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 // Components
 import LoadingWheel from './LoadingWheel';
 
-// CSS
-import './CountryAreaChart.scss';
-
 // Api
 import { getCovid19StatisticsByCountryAndStatus } from '../api/Covid19Api';
+
+// Constants
+import { DATE_PARSING_OPTIONS } from '../constants/general';
 
 // Interface
 interface iCountryAreaChartProps {
@@ -38,8 +41,6 @@ const CountryAreaChart: React.FC<iCountryAreaChartProps> = (props) => {
     undefined,
   );
 
-  // TODO: Move this perhaps to a top level component that handles the Data?
-  // TODO: This cluster**** needs to be rewritten obviously.
   useEffect(() => {
     /**
      * Gets the Statistics for a specific Country.
@@ -137,15 +138,9 @@ const CountryAreaChart: React.FC<iCountryAreaChartProps> = (props) => {
   };
 
   const parseDate = (countryDate: string) => {
-    const options = {
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-    };
-
     // Parsing incoming DateString
     const date = new Date(Date.parse(countryDate));
-    return date.toLocaleDateString('nl-NL', options);
+    return date.toLocaleDateString('nl-NL', DATE_PARSING_OPTIONS);
   };
 
   return (
