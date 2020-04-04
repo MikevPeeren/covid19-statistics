@@ -1,4 +1,5 @@
 // Api Related
+// Could be moved to https://production.covid19api.com in the future.
 export const COVID_19_BASE_API_URL = 'https://api.covid19api.com';
 
 // General

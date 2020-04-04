@@ -46,6 +46,8 @@ const SearchForm: React.FC<ISearchFormProps> = (props) => {
     getCovid19CountriesByApi();
   }, []);
 
+  countries && countries.splice(0, 2);
+
   return (
     <FormControl>
       <InputLabel id="country__input--label">{SEARCH_FORM_INPUT_TEXT}</InputLabel>
