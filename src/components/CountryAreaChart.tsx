@@ -14,7 +14,7 @@ import LoadingWheel from './LoadingWheel';
 import { getCovid19StatisticsByCountryAndStatus } from '../api/Covid19Api';
 
 // Constants
-import { DATE_PARSING_OPTIONS } from '../constants/general';
+import { DATE_PARSING_OPTIONS_CHARTS } from '../constants/general';
 
 // Interface
 interface iCountryAreaChartProps {
@@ -82,9 +82,15 @@ const CountryAreaChart: React.FC<iCountryAreaChartProps> = (props) => {
     }
 
     getCovid19CountryStatistics();
+    // We eslint-disable here because we don't want to watch our functions, as this would result in multiple rerenders.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [country]);
 
+  /**
+   * Convert all the DateTimes to Date's.
+   * @param {ICovid19CountryStatistics} covid19StatisticsByCountry
+   * @returns {array}
+   */
   const handleCovid19StatisticsByCountry = async (covid19StatisticsByCountry: ICovid19CountryStatistics[]) => {
     if (covid19StatisticsByCountry && Object.keys(covid19StatisticsByCountry).length > 0) {
       return covid19StatisticsByCountry.map((country) => {
@@ -97,6 +103,12 @@ const CountryAreaChart: React.FC<iCountryAreaChartProps> = (props) => {
     }
   };
 
+  /**
+   * Map the Cases to the original array as Deaths Cases.
+   * @param {ICovid19CountryStatistics} covid19StatisticsByCountryDeaths
+   * @param {ICovid19CountryStatistics} covid19ResultWithConfirmed
+   * @returns {array}
+   */
   const handleCovid19StatisticsByCountryDeaths = async (
     covid19StatisticsByCountryDeaths: ICovid19CountryStatistics[],
     covid19ResultWithConfirmed: ICovid19CountryStatistics[] | undefined,
@@ -117,6 +129,12 @@ const CountryAreaChart: React.FC<iCountryAreaChartProps> = (props) => {
     }
   };
 
+  /**
+   * Map the Cases to the original array as Recovered Cases.
+   * @param {covid19StatisticsByCountryRecovered} covid19StatisticsByCountryDeaths
+   * @param {covid19ResultWithDeaths} covid19ResultWithConfirmed
+   * @returns {array}
+   */
   const handleCovid19StatisticsByCountryRecovered = async (
     covid19StatisticsByCountryRecovered: ICovid19CountryStatistics[],
     covid19ResultWithDeaths: ICovid19CountryStatistics[] | undefined,
@@ -137,10 +155,13 @@ const CountryAreaChart: React.FC<iCountryAreaChartProps> = (props) => {
     }
   };
 
+  /**
+   * Parse the DateTime to a easy to read Date.
+   * @param {string} countryDate
+   */
   const parseDate = (countryDate: string) => {
-    // Parsing incoming DateString
     const date = new Date(Date.parse(countryDate));
-    return date.toLocaleDateString('nl-NL', DATE_PARSING_OPTIONS);
+    return date.toLocaleDateString('nl-NL', DATE_PARSING_OPTIONS_CHARTS);
   };
 
   return (

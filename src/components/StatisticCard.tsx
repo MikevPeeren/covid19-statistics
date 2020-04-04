@@ -1,11 +1,11 @@
 // React
 import React from 'react';
 
-// External
-import classNames from 'classnames';
-
 // CSS
 import './StatisticCard.scss';
+
+// External
+import classNames from 'classnames';
 
 // Material UI
 import Card from '@material-ui/core/Card';
@@ -17,8 +17,9 @@ import Typography from '@material-ui/core/Typography';
 import { BugReport, ReportOutlined, Security } from '@material-ui/icons';
 
 // Constants
-import { TOTAL_CONFIRMED, TOTAL_DEATHS, TOTAL_RECOVERED } from '../constants/general';
+import { TOTAL_CONFIRMED, TOTAL_DEATHS, TOTAL_RECOVERED, DATE_PARSING_OPTIONS_GLOBAL } from '../constants/general';
 
+// Interface
 interface IStatisticCardProps {
   title: string;
   dateString: string;
@@ -36,17 +37,8 @@ const StatisticCard: React.FC<IStatisticCardProps> = (props) => {
    * @returns {string}
    */
   const parseDateString = (): string => {
-    const options = {
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric',
-    };
-
     const date = new Date(Date.parse(dateString));
-    return date.toLocaleDateString('nl-NL', options);
+    return date.toLocaleDateString('nl-NL', DATE_PARSING_OPTIONS_GLOBAL);
   };
 
   /**
