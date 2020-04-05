@@ -1,9 +1,9 @@
 // Axios/Api
 import axios from 'axios';
-import { getCovid19Statistics, getCovid19Countries, getCovid19StatisticsByCountryAndStatus } from '../api/Covid19Api';
+import { getCovid19Statistics, getCovid19Countries, getCovid19StatisticsByCountryAndStatus } from '../Covid19Api';
 
 // Constants
-import { COVID_19_BASE_API_URL } from '../constants/general';
+import { COVID_19_BASE_API_URL } from '../../constants/general';
 
 // Mocks
 import {
