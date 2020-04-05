@@ -1,6 +1,6 @@
 // Api Related
-// Pre-release API should be moved to https://api.covid19api.com in the future.
-export const COVID_19_BASE_API_URL = 'https://production.covid19api.com';
+// Pre-release API is: https://production.covid19api.com
+export const COVID_19_BASE_API_URL = 'https://api.covid19api.com';
 
 // General
 export const COVID_19_HEADER = 'COVID-19 Statistics';
