@@ -9,14 +9,18 @@ import LoadingWheel from './LoadingWheel';
 import { getCovid19Statistics } from '../api/Covid19Api';
 
 // Constants
-import {
-  TOTAL_CONFIRMED,
-  TOTAL_DEATHS,
-  TOTAL_RECOVERED,
-} from '../constants/general';
+import { TOTAL_CONFIRMED, TOTAL_DEATHS, TOTAL_RECOVERED } from '../constants/general';
 
 // Interface
 interface ICovid19Statistics {
+  Global: {
+    NewConfirmed: number;
+    TotalConfirmed: number;
+    NewDeaths: number;
+    TotalDeaths: number;
+    NewRecovered: number;
+    TotalRecovered: number;
+  };
   Countries: [
     {
       TotalConfirmed: number;
@@ -30,16 +34,8 @@ interface ICovid19Statistics {
 }
 
 const GlobalStatistics = () => {
-  const [
-    covid19Statistics,
-    setCovid19Statistics,
-  ] = useState<ICovid19Statistics | null>(null);
+  const [covid19Statistics, setCovid19Statistics] = useState<ICovid19Statistics | null>(null);
   const [loading, setLoading] = useState(true);
-
-  let totalConfirmed = 0;
-  let totalDeaths = 0;
-  let totalRecovered = 0;
-
   useEffect(() => {
     /**
      * Get the Global Covid 19 Statistics
@@ -54,15 +50,6 @@ const GlobalStatistics = () => {
     }
   });
 
-  // Adjusting totalCount with a loop.
-  if (covid19Statistics) {
-    covid19Statistics.Countries.forEach((country) => {
-      totalConfirmed = totalConfirmed + country.TotalConfirmed;
-      totalDeaths = totalDeaths + country.TotalDeaths;
-      totalRecovered = totalRecovered + country.TotalRecovered;
-    });
-  }
-
   return (
     <>
       {loading && <LoadingWheel />}
@@ -71,17 +58,17 @@ const GlobalStatistics = () => {
           <StatisticCard
             title={TOTAL_CONFIRMED}
             dateString={covid19Statistics.Date}
-            statistic={totalConfirmed}
+            statistic={covid19Statistics.Global.TotalConfirmed}
           ></StatisticCard>
           <StatisticCard
             title={TOTAL_DEATHS}
             dateString={covid19Statistics.Date}
-            statistic={totalDeaths}
+            statistic={covid19Statistics.Global.TotalDeaths}
           ></StatisticCard>
           <StatisticCard
             title={TOTAL_RECOVERED}
             dateString={covid19Statistics.Date}
-            statistic={totalRecovered}
+            statistic={covid19Statistics.Global.TotalRecovered}
           ></StatisticCard>
         </div>
       )}
