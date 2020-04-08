@@ -85,7 +85,7 @@ const StatisticCard: React.FC<IStatisticCardProps> = (props) => {
         subheader={`Updated at: ${date}`}
       />
       <CardContent classes={{ root: typographyClassNames }}>
-        <Typography variant="h3" component="p">
+        <Typography variant="h4" component="p">
           {statistic}
         </Typography>
       </CardContent>

@@ -16,8 +16,20 @@
     display: flex;
     justify-content: center;
     margin: 0 auto;
-    margin-left: 2em;
-    margin-right: 2em;
+  }
+
+  @media screen and (max-width: 500px) {
+    &__GlobalStatistics {
+      flex-direction: column !important;
+      margin-left: 2em;
+      margin-right: 2em;
+    }
+  }
+
+  @media screen and (max-width: 1500px) {
+    &__GlobalStatistics {
+      flex-direction: row;
+    }
   }
 
   &__SearchForm {
