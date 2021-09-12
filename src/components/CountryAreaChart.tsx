@@ -52,32 +52,19 @@ const CountryAreaChart: React.FC<iCountryAreaChartProps> = (props) => {
         country,
         'confirmed',
       );
-      const covid19StatisticsByCountryDeaths: ICovid19CountryStatistics[] = await getCovid19StatisticsByCountryAndStatus(
-        country,
-        'deaths',
-      );
-      const covid19StatisticsByCountryRecovered: ICovid19CountryStatistics[] = await getCovid19StatisticsByCountryAndStatus(
-        country,
-        'recovered',
-      );
+      const covid19StatisticsByCountryDeaths: ICovid19CountryStatistics[] =
+        await getCovid19StatisticsByCountryAndStatus(country, 'deaths');
+      const covid19StatisticsByCountryRecovered: ICovid19CountryStatistics[] =
+        await getCovid19StatisticsByCountryAndStatus(country, 'recovered');
 
-      const covid19ResultWithConfirmed:
-        | ICovid19CountryStatistics[]
-        | undefined = await handleCovid19StatisticsByCountry(covid19StatisticsByCountry);
+      const covid19ResultWithConfirmed: ICovid19CountryStatistics[] | undefined =
+        await handleCovid19StatisticsByCountry(covid19StatisticsByCountry);
 
-      const covid19ResultWithDeaths:
-        | ICovid19CountryStatistics[]
-        | undefined = await handleCovid19StatisticsByCountryDeaths(
-        covid19StatisticsByCountryDeaths,
-        covid19ResultWithConfirmed,
-      );
+      const covid19ResultWithDeaths: ICovid19CountryStatistics[] | undefined =
+        await handleCovid19StatisticsByCountryDeaths(covid19StatisticsByCountryDeaths, covid19ResultWithConfirmed);
 
-      const covid19ResultWithRecovered:
-        | ICovid19CountryStatistics[]
-        | undefined = await handleCovid19StatisticsByCountryRecovered(
-        covid19StatisticsByCountryRecovered,
-        covid19ResultWithDeaths,
-      );
+      const covid19ResultWithRecovered: ICovid19CountryStatistics[] | undefined =
+        await handleCovid19StatisticsByCountryRecovered(covid19StatisticsByCountryRecovered, covid19ResultWithDeaths);
 
       setCovid19CountryStatistics(covid19ResultWithRecovered);
       setLoading(false);
@@ -163,6 +150,7 @@ const CountryAreaChart: React.FC<iCountryAreaChartProps> = (props) => {
    */
   const parseDate = (countryDate: string) => {
     const date = new Date(Date.parse(countryDate));
+    //@ts-ignore
     return date.toLocaleDateString('nl-NL', DATE_PARSING_OPTIONS_CHARTS);
   };
 

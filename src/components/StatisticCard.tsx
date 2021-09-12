@@ -38,6 +38,7 @@ const StatisticCard: React.FC<IStatisticCardProps> = (props) => {
    */
   const parseDateString = (): string => {
     const date = new Date(Date.parse(dateString));
+    //@ts-ignore
     return date.toLocaleDateString('nl-NL', DATE_PARSING_OPTIONS_GLOBAL);
   };
 
