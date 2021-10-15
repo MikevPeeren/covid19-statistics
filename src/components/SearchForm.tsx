@@ -40,6 +40,7 @@ const SearchForm: React.FC<ISearchFormProps> = (props) => {
      * Get the Countries affected by Covid 19.
      */
     async function getCovid19CountriesByApi() {
+      //@ts-ignore
       setCountries(await getCovid19Countries());
     }
 

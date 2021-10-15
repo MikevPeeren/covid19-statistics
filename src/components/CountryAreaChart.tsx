@@ -20,6 +20,7 @@ import { DATE_PARSING_OPTIONS_CHARTS, NO_DATA_FOUND } from '../constants/general
 interface iCountryAreaChartProps {
   country: string;
 }
+
 interface ICovid19CountryStatistics {
   Country: string;
   Province: string;
@@ -48,12 +49,15 @@ const CountryAreaChart: React.FC<iCountryAreaChartProps> = (props) => {
      * Gets the Statistics for a specific Country.
      */
     async function getCovid19CountryStatistics() {
+      //@ts-ignore
       const covid19StatisticsByCountry: ICovid19CountryStatistics[] = await getCovid19StatisticsByCountryAndStatus(
         country,
         'confirmed',
       );
+      //@ts-ignore
       const covid19StatisticsByCountryDeaths: ICovid19CountryStatistics[] =
         await getCovid19StatisticsByCountryAndStatus(country, 'deaths');
+      //@ts-ignore
       const covid19StatisticsByCountryRecovered: ICovid19CountryStatistics[] =
         await getCovid19StatisticsByCountryAndStatus(country, 'recovered');
 

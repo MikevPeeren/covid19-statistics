@@ -41,6 +41,7 @@ const GlobalStatistics = () => {
      * Get the Global Covid 19 Statistics
      */
     async function getCovid19Stats() {
+      //@ts-ignore
       setCovid19Statistics(await getCovid19Statistics());
       setLoading(false);
     }
