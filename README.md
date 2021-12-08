@@ -1,10 +1,8 @@
-![Build and Deploy](https://github.com/MikevPeeren/Covid19-Statistics/workflows/Build%20and%20Deploy/badge.svg)
-
 # Covid-19 Statistics
 
 Access data on COVID-19 through an easy Web Interface.
 
-To make use of the Data yourself, you can interact with the following API: https://covid19api.com/
+To make use of the Data yourself, you can interact with the following API: <https://covid19api.com/>
 
 # Covid-19
 
