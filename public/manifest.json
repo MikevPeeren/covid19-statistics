@@ -1,9 +1,11 @@
 {
+  "version": "1.1.0",
+  "manifest_version": 2,
   "short_name": "COVID-19 Statistics",
   "name": "Covid-19 Statistics",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "/favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }
