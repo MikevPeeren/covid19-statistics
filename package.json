@@ -19,7 +19,7 @@
     "react-dom": "^18.0.0",
     "react-scripts": "5.0.0",
     "recharts": "^2.1.9",
-    "sass": "^1.49.9"
+    "sass": "^1.49.10"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.3",
